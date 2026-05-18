@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Login</title>
+</head>
+
+<body style="
+    margin:0;
+    padding:0;
+    font-family:Arial, sans-serif;
+    background:#f4f7fb;
+">
+
+    <!-- Navbar -->
+    <div style="
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:20px 60px;
+        background:white;
+        box-shadow:0 2px 10px rgba(0,0,0,0.08);
+    ">
+
+        <h1 style="margin:0; color:#333;">
+            MyBlog API
+        </h1>
+
+        <a href="{% url 'landing_page' %}" style="text-decoration:none;">
+            <button style="
+                padding:10px 20px;
+                border:none;
+                background:#4a90e2;
+                color:white;
+                border-radius:6px;
+                cursor:pointer;
+                font-size:15px;
+                font-weight:bold;
+            ">
+                Home
+            </button>
+        </a>
+
+    </div>
+
+    <!-- Login Container -->
+    <div style="
+        height:85vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+    ">
+
+        <div style="
+            width:400px;
+            background:white;
+            padding:40px;
+            border-radius:12px;
+            box-shadow:0 4px 20px rgba(0,0,0,0.08);
+        ">
+
+            <h1 style="
+                text-align:center;
+                margin-bottom:30px;
+                color:#222;
+            ">
+                Login
+            </h1>
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                <!-- Username -->
+                <div style="margin-bottom:20px;">
+
+                    <label style="
+                        display:block;
+                        margin-bottom:8px;
+                        color:#444;
+                        font-weight:bold;
+                    ">
+                        Username
+                    </label>
+
+                    <input
+                        type="text"
+                        name="username"
+                        placeholder="Enter username"
+                        required
+                        style="
+                            width:100%;
+                            padding:12px;
+                            border:1px solid #ccc;
+                            border-radius:6px;
+                            font-size:15px;
+                            box-sizing:border-box;
+                        "
+                    />
+
+                </div>
+
+                <!-- Password -->
+                <div style="margin-bottom:25px;">
+
+                    <label style="
+                        display:block;
+                        margin-bottom:8px;
+                        color:#444;
+                        font-weight:bold;
+                    ">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Enter password"
+                        required
+                        style="
+                            width:100%;
+                            padding:12px;
+                            border:1px solid #ccc;
+                            border-radius:6px;
+                            font-size:15px;
+                            box-sizing:border-box;
+                        "
+                    />
+
+                </div>
+
+                <!-- Error Message -->
+                {% if error %}
+                    <p style="
+                        color:red;
+                        margin-bottom:15px;
+                        text-align:center;
+                    ">
+                        {{ error }}
+                    </p>
+                {% endif %}
+
+                <!-- Submit -->
+                <button
+                    type="submit"
+                    style="
+                        width:100%;
+                        padding:14px;
+                        border:none;
+                        background:#4a90e2;
+                        color:white;
+                        font-size:16px;
+                        border-radius:6px;
+                        cursor:pointer;
+                        font-weight:bold;
+                    "
+                >
+                    Login
+                </button>
+
+            </form>
+
+            <!-- Register Link -->
+            <p style="
+                text-align:center;
+                margin-top:20px;
+                color:#666;
+            ">
+                Don't have an account?
+
+                <a href="{% url 'register' %}" style="
+                    color:#4a90e2;
+                    text-decoration:none;
+                    font-weight:bold;
+                ">
+                    Register
+                </a>
+            </p>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

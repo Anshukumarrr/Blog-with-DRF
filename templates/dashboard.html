@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Dashboard</title>
+</head>
+
+<body style="
+    margin:0;
+    padding:0;
+    font-family:Arial, sans-serif;
+    background:#f4f7fb;
+">
+
+    <!-- Navbar -->
+    <div style="
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:20px 50px;
+        background:white;
+        box-shadow:0 2px 10px rgba(0,0,0,0.08);
+    ">
+
+        <h1 style="
+            margin:0;
+            color:#333;
+        ">
+            MyBlog Dashboard
+        </h1>
+
+        <div>
+
+            <a href="">
+                <button style="
+                    padding:10px 20px;
+                    margin-right:10px;
+                    border:none;
+                    background:#4a90e2;
+                    color:white;
+                    border-radius:6px;
+                    cursor:pointer;
+                    font-size:15px;
+                    font-weight:bold;
+                ">
+                    Create Blog
+                </button>
+            </a>
+
+            <a href="">
+                <button style="
+                    padding:10px 20px;
+                    margin-right:10px;
+                    border:none;
+                    background:#27ae60;
+                    color:white;
+                    border-radius:6px;
+                    cursor:pointer;
+                    font-size:15px;
+                    font-weight:bold;
+                ">
+                    Update Profile
+                </button>
+            </a>
+
+            <a href="">
+                <button style="
+                    padding:10px 20px;
+                    border:none;
+                    background:#e74c3c;
+                    color:white;
+                    border-radius:6px;
+                    cursor:pointer;
+                    font-size:15px;
+                    font-weight:bold;
+                ">
+                    Logout
+                </button>
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- Dashboard Content -->
+    <div style="
+        padding:40px 60px;
+    ">
+
+        <h2 style="
+            color:#222;
+            margin-bottom:30px;
+        ">
+            Your Blogs
+        </h2>
+
+        <!-- Blog Cards Container -->
+        <div style="
+            display:grid;
+            grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+            gap:25px;
+        ">
+
+            <!-- Blog Card -->
+            {% for blog in blogs %}
+
+            <div style="
+                background:white;
+                padding:25px;
+                border-radius:12px;
+                box-shadow:0 4px 15px rgba(0,0,0,0.08);
+            ">
+
+                <h2 style="
+                    margin-top:0;
+                    color:#333;
+                    margin-bottom:15px;
+                ">
+                    {{ blog.title }}
+                </h2>
+
+                <p style="
+                    color:#666;
+                    line-height:1.6;
+                    margin-bottom:20px;
+                ">
+                    {{ blog.content|truncatewords:25 }}
+                </p>
+
+                <div style="
+                    display:flex;
+                    justify-content:space-between;
+                    align-items:center;
+                ">
+
+                    <small style="
+                        color:#999;
+                    ">
+                        {{ blog.created_at }}
+                    </small>
+
+                    <div>
+
+                        <a href="">
+                            <button style="
+                                padding:8px 14px;
+                                border:none;
+                                background:#f39c12;
+                                color:white;
+                                border-radius:5px;
+                                cursor:pointer;
+                                margin-right:8px;
+                            ">
+                                Edit
+                            </button>
+                        </a>
+
+                        <a href="">
+                            <button style="
+                                padding:8px 14px;
+                                border:none;
+                                background:#e74c3c;
+                                color:white;
+                                border-radius:5px;
+                                cursor:pointer;
+                            ">
+                                Delete
+                            </button>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% empty %}
+
+            <!-- Empty State -->
+            <div style="
+                background:white;
+                padding:40px;
+                border-radius:12px;
+                box-shadow:0 4px 15px rgba(0,0,0,0.08);
+                text-align:center;
+                grid-column:1/-1;
+            ">
+
+                <h2 style="
+                    color:#333;
+                    margin-bottom:15px;
+                ">
+                    No Blogs Yet
+                </h2>
+
+                <p style="
+                    color:#777;
+                    margin-bottom:25px;
+                ">
+                    Start creating your first blog post now.
+                </p>
+
+                <a href="">
+                    <button style="
+                        padding:12px 24px;
+                        border:none;
+                        background:#4a90e2;
+                        color:white;
+                        border-radius:6px;
+                        cursor:pointer;
+                        font-size:15px;
+                        font-weight:bold;
+                    ">
+                        Create Blog
+                    </button>
+                </a>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</body>
+</html>
